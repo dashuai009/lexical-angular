@@ -2,7 +2,9 @@
 
 A angular binding for lexical.
 
-[demo](https://lexical-angular.dashuai009.icu)
+[demo](http://lexical-angular.dashuai009.icu)
+
+[how to create a decorate node](https://www.dashuai009.icu/pages/15)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
 
