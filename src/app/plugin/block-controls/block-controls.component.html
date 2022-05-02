@@ -1,0 +1,37 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="block controls">
+  <mat-icon>block</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="formatParagraph()">
+    <mat-icon>dialpad</mat-icon>
+    <span>Normal</span>
+  </button>
+  <button mat-menu-item (click)="formatHeading('h1')">
+    <mat-icon>voicemail</mat-icon>
+    <span>Heading 1</span>
+  </button>
+  <button mat-menu-item (click)="formatHeading('h2')">
+    <mat-icon>notifications_off</mat-icon>
+    <span>Heading 2</span>
+  </button>
+  <button mat-menu-item (click)="formatHeading('h3')">
+    <mat-icon>notifications_off</mat-icon>
+    <span>Heading 3</span>
+  </button>
+  <button mat-menu-item (click)="formatBulletList()">
+    <mat-icon>list</mat-icon>
+    <span>Bullet List</span>
+  </button>
+  <button mat-menu-item (click)="formatNumberedList()">
+    <mat-icon>notifications_off</mat-icon>
+    <span>Numbered List</span>
+  </button>
+  <button mat-menu-item (click)="formatQuote()">
+    <mat-icon>quote</mat-icon>
+    <span>Quote</span>
+  </button>
+  <button mat-menu-item (click)="formatCode()">
+    <mat-icon>code</mat-icon>
+    <span>Code Block</span>
+  </button>
+</mat-menu>

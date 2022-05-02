@@ -15,11 +15,23 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "lexical",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lexical",
+              "@lexical/code",
+              "@lexical/dragon",
+              "@lexical/link",
+              "@lexical/list",
+              "@lexical/rich-text",
+              "@lexical/selection",
+              "@lexical/table",
+              "@lexical/utils",
+              "@lexical/history"
+            ],
             "outputPath": "dist/lexical-angular",
             "index": "src/index.html",
             "main": "src/main.ts",

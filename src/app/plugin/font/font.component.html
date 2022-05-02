@@ -1,0 +1,23 @@
+<button mat-raised-button [matMenuTriggerFor]="fontFamilyMenu" aria-label="block controls">
+  <mat-icon>text_format</mat-icon>
+  <span>{{curFont}}</span>
+</button>
+<mat-menu #fontFamilyMenu="matMenu">
+  <button *ngFor="let fontF of fontFamily" mat-menu-item (click)="applyFontFamily(fontF)">
+    <span>{{fontF}}</span>
+  </button>
+</mat-menu>
+
+<button mat-raised-button [matMenuTriggerFor]="fontSizeMenu" aria-label="block controls">
+  <mat-icon>format_size</mat-icon>
+  <span>{{curSize}}</span>
+</button>
+<mat-menu #fontSizeMenu="matMenu">
+  <button *ngFor="let fontS of fontSize" mat-menu-item (click)="applyFontSize(fontS)">
+    <span>{{fontS}}px</span>
+  </button>
+</mat-menu>
+
+<button mat-icon-button *ngFor="let t of textFormat;index as i;" (click)="applyFormatStyle(t)">
+  <mat-icon>{{formatIcon[i]}}</mat-icon>
+</button>

@@ -1,0 +1,17 @@
+header {
+  max-width: 580px;
+  margin: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.editor-shell {
+  margin: 20px auto;
+  border-radius: 2px;
+  max-width: 1000px;
+  color: #000;
+  position: relative;
+  line-height: 20px;
+  font-weight: 400;
+}

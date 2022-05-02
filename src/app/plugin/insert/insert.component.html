@@ -1,0 +1,10 @@
+<button mat-raised-button [matMenuTriggerFor]="insertMenu" aria-label="block controls">
+  <mat-icon>add</mat-icon>
+  <span>insert</span>
+</button>
+<mat-menu #insertMenu="matMenu">
+  <button  mat-menu-item (click)="insertHorizontalRule()">
+    <mat-icon>horizontal_split</mat-icon>
+    <span>insert horizontal rule</span>
+  </button>
+</mat-menu>
