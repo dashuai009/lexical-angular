@@ -1,6 +1,6 @@
 # LexicalAngular
 
-A angular binding for lexical.
+Angular binding for lexical.
 
 [demo](http://lexical-angular.dashuai009.icu)
 
