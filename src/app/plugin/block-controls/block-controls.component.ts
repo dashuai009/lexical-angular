@@ -6,16 +6,17 @@ import {$wrapLeafNodesInElements} from "@lexical/selection";
 import {$createHeadingNode, $createQuoteNode} from "@lexical/rich-text";
 import {
   $handleListInsertParagraph,
-  indentList,
+  indentList, INSERT_CHECK_LIST_COMMAND,
   INSERT_ORDERED_LIST_COMMAND,
   INSERT_UNORDERED_LIST_COMMAND,
-  insertList,
+  insertList, ListType,
   outdentList,
   REMOVE_LIST_COMMAND,
   removeList
 } from "@lexical/list";
 import {$createCodeNode} from "@lexical/code";
 import {mergeRegister} from "@lexical/utils";
+import {LexicalCheckListPlugin} from "./LexicalCheckListPlugin";
 
 @Component({
   selector: 'lexical-block-controls',
@@ -24,12 +25,18 @@ import {mergeRegister} from "@lexical/utils";
 })
 export class BlockControlsComponent implements OnInit {
 
-  blockType: 'paragraph' | 'h1' | 'h2' | 'h3' | 'ul' | 'ol' | 'quote' | 'code' = 'paragraph';
+  blockType: 'paragraph' | 'h1' | 'h2' | 'h3' | ListType | 'quote' | 'code' = 'paragraph';
+  ListCommand = new Map<ListType, any>([
+    ['bullet', INSERT_UNORDERED_LIST_COMMAND],
+    ['number', INSERT_ORDERED_LIST_COMMAND],
+    ['check', INSERT_CHECK_LIST_COMMAND]
+  ])
 
   constructor(private editor: EditorService) {
   }
 
   ngOnInit(): void {
+    LexicalCheckListPlugin(this.editor.editor);
     mergeRegister(
       this.editor.editor.registerCommand(lexical.INDENT_CONTENT_COMMAND, () => {
         indentList();
@@ -41,16 +48,6 @@ export class BlockControlsComponent implements OnInit {
         return false;
       }, lexical.COMMAND_PRIORITY_LOW),
 
-      this.editor.editor.registerCommand(INSERT_ORDERED_LIST_COMMAND, () => {
-        insertList(this.editor.editor, 'ol');
-        return true;
-      }, lexical.COMMAND_PRIORITY_LOW),
-
-      this.editor.editor.registerCommand(INSERT_UNORDERED_LIST_COMMAND, () => {
-        insertList(this.editor.editor, 'ul');
-        return true;
-      }, lexical.COMMAND_PRIORITY_LOW),
-
       this.editor.editor.registerCommand(REMOVE_LIST_COMMAND, () => {
         removeList(this.editor.editor);
         return true;
@@ -58,7 +55,15 @@ export class BlockControlsComponent implements OnInit {
 
       this.editor.editor.registerCommand(lexical.INSERT_PARAGRAPH_COMMAND, () => {
         return $handleListInsertParagraph();
-      }, lexical.COMMAND_PRIORITY_LOW));
+      }, lexical.COMMAND_PRIORITY_LOW)
+    );
+
+    for (let listT of this.ListCommand.keys()) {
+      this.editor.editor.registerCommand(this.ListCommand.get(listT), () => {
+        insertList(this.editor.editor, listT);
+        return true;
+      }, lexical.COMMAND_PRIORITY_LOW)
+    }
   }
 
   formatParagraph() {
@@ -87,21 +92,13 @@ export class BlockControlsComponent implements OnInit {
     }
   };
 
-  formatBulletList() {
-    if (this.blockType !== 'ul') {
-      this.editor.editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, null);
+  formatList(listT: ListType) {
+    if (this.blockType !== listT) {
+      this.editor.editor.dispatchCommand(this.ListCommand.get(listT), null);
     } else {
       this.editor.editor.dispatchCommand(REMOVE_LIST_COMMAND, null);
     }
-  };
-
-  formatNumberedList() {
-    if (this.blockType !== 'ol') {
-      this.editor.editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, null);
-    } else {
-      this.editor.editor.dispatchCommand(REMOVE_LIST_COMMAND, null);
-    }
-  };
+  }
 
   formatQuote() {
     if (this.blockType !== 'quote') {

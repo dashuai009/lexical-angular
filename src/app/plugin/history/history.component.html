@@ -1,8 +1,8 @@
 <div class="divider">
-  <button mat-raised-button [disabled]="!canUndo" (click)="undo()">
+  <button mat-icon-button [disabled]="!canUndo" (click)="undo()">
     <mat-icon>undo</mat-icon>
   </button>
-  <button mat-raised-button [disabled]="!canRedo" (click)="redo()">
+  <button mat-icon-button [disabled]="!canRedo" (click)="redo()">
     <mat-icon>redo</mat-icon>
   </button>
 </div>

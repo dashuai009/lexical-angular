@@ -1,5 +1,6 @@
-<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="block controls">
-  <mat-icon>block</mat-icon>
+<button mat-raised-button [matMenuTriggerFor]="menu" aria-label="block controls">
+  <mat-icon>segment</mat-icon>
+  <span>{{blockType}}</span>
 </button>
 <mat-menu #menu="matMenu">
   <button mat-menu-item (click)="formatParagraph()">
@@ -18,16 +19,20 @@
     <mat-icon>notifications_off</mat-icon>
     <span>Heading 3</span>
   </button>
-  <button mat-menu-item (click)="formatBulletList()">
+  <button mat-menu-item (click)="formatList('bullet')">
     <mat-icon>list</mat-icon>
     <span>Bullet List</span>
   </button>
-  <button mat-menu-item (click)="formatNumberedList()">
+  <button mat-menu-item (click)="formatList('number')">
     <mat-icon>notifications_off</mat-icon>
     <span>Numbered List</span>
   </button>
+  <button mat-menu-item (click)="formatList('check')">
+    <mat-icon>check</mat-icon>
+    <span>Check List</span>
+  </button>
   <button mat-menu-item (click)="formatQuote()">
-    <mat-icon>quote</mat-icon>
+    <mat-icon>format_quote</mat-icon>
     <span>Quote</span>
   </button>
   <button mat-menu-item (click)="formatCode()">

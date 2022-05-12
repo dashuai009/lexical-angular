@@ -1,4 +1,14 @@
-export const PlaygroundEditorTheme = {
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+import type {EditorThemeClasses} from 'lexical';
+
+export const PlaygroundEditorTheme: EditorThemeClasses = {
   characterLimit: 'PlaygroundEditorTheme__characterLimit',
   code: 'PlaygroundEditorTheme__code',
   codeHighlight: {
@@ -45,6 +55,8 @@ export const PlaygroundEditorTheme = {
   link: 'PlaygroundEditorTheme__link',
   list: {
     listitem: 'PlaygroundEditorTheme__listItem',
+    listitemChecked: 'PlaygroundEditorTheme__listItemChecked',
+    listitemUnchecked: 'PlaygroundEditorTheme__listItemUnchecked',
     nested: {
       listitem: 'PlaygroundEditorTheme__nestedListItem',
     },
@@ -58,6 +70,8 @@ export const PlaygroundEditorTheme = {
     ul: 'PlaygroundEditorTheme__ul',
   },
   ltr: 'PlaygroundEditorTheme__ltr',
+  mark: 'PlaygroundEditorTheme__mark',
+  markOverlap: 'PlaygroundEditorTheme__markOverlap',
   paragraph: 'PlaygroundEditorTheme__paragraph',
   quote: 'PlaygroundEditorTheme__quote',
   rtl: 'PlaygroundEditorTheme__rtl',
@@ -69,6 +83,8 @@ export const PlaygroundEditorTheme = {
     code: 'PlaygroundEditorTheme__textCode',
     italic: 'PlaygroundEditorTheme__textItalic',
     strikethrough: 'PlaygroundEditorTheme__textStrikethrough',
+    subscript: 'PlaygroundEditorTheme__textSubscript',
+    superscript: 'PlaygroundEditorTheme__textSuperscript',
     underline: 'PlaygroundEditorTheme__textUnderline',
     underlineStrikethrough: 'PlaygroundEditorTheme__textUnderlineStrikethrough',
   },
